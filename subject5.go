@@ -10,43 +10,59 @@ func main() {
 			fmt.Scan(&numbers[i][j])
 		}
 		fmt.Println(numbers)
-	}
-	// sub 2
-	numbers2 := [11][11]string{
-		{"*", ".", ".", ".", ".", "*", ".", ".", ".", ".", "*"},
-		{".", "*", ".", ".", ".", "*", ".", ".", ".", "*", "."},
-		{".", ".", "*", ".", ".", "*", ".", ".", "*", ".", "."},
-		{".", ".", ".", "*", ".", "*", ".", "*", ".", ".", "."},
-		{"*", "*", "*", "*", "*", "*", "*", "*", "*", "*", "*"},
-		{".", ".", ".", ".", ".", "*", ".", ".", ".", ".", "."},
-		{".", ".", ".", ".", "*", "*", "*", ".", ".", ".", "."},
-		{".", ".", ".", "*", ".", "*", ".", "*", ".", ".", "."},
-		{".", ".", "*", ".", ".", "*", ".", ".", "*", ".", "."},
-		{".", "*", ".", ".", ".", "*", ".", ".", ".", "*", "."},
-		{"*", ".", ".", ".", ".", "*", ".", ".", ".", ".", "*"},
-	}
-	for i, pair := range numbers2 {
-		for j, _ := range pair {
-			fmt.Print(numbers2[i][j], " ")
+		max_i, max_j := 0, 0
+		max_value := numbers[0][0]
+
+		for i, row := range numbers {
+			for j, number := range row {
+				if number > max_value {
+					max_value = number
+					max_i, max_j = i, j
+				}
+			}
+
 		}
-		fmt.Println()
-		// sub 3
-		numbers3 := [8][8]string{
-			{".", "*", ".", "*", ".", "*", ".", "*"},
-			{"*", ".", "*", ".", "*", ".", "*", "."},
-			{".", "*", ".", "*", ".", "*", ".", "*"},
-			{"*", ".", "*", ".", "*", ".", "*", "."},
-			{".", "*", ".", "*", ".", "*", ".", "*"},
-			{"*", ".", "*", ".", "*", ".", "*", "."},
-			{".", "*", ".", "*", ".", "*", ".", "*"},
-			{"*", ".", "*", ".", "*", ".", "*", "."},
-		}
-		for i, pair := range numbers3 {
-			for j, _ := range pair {
-				fmt.Print(numbers3[i][j], " ")
+		fmt.Printf("max value: %d, position: [%d][%d]\n", max_value, max_i, max_j)
+		// sub 2
+		numbers2 := [11][11]string{}
+		for i := range numbers2 {
+			for j := range numbers2[i] {
+				numbers2[i][j] = "."
 			}
 		}
-		fmt.Println()
+
+		for i, row := range numbers2 {
+			for j, _ := range row {
+				if i == j {
+					numbers2[i][j] = "*"
+				}
+
+				if i+j == len(numbers2)-1 {
+					numbers2[i][j] = "*"
+				}
+
+				if i == len(numbers2)/2 || j == len(numbers2)/2 {
+					numbers2[i][j] = "*"
+				}
+
+				fmt.Print(numbers2[i][j], "")
+			}
+			fmt.Println()
+		}
+		// sub 3
+		numbers3 := [8][8]string{}
+		for i := range numbers3 {
+			for j := range numbers3[i] {
+
+				if (i+j)%2 == 0 {
+					numbers3[i][j] = "."
+				} else {
+					numbers3[i][j] = "*"
+				}
+				fmt.Print(numbers3[i][j], "")
+			}
+			fmt.Println()
+		}
 
 		// sub 4
 
