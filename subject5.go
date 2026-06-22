@@ -14,6 +14,7 @@ func main() {
 	max_i, max_j := 0, 0
 	max_value := numbers[0][0]
 
+	
 	for i, row := range numbers {
 		for j, number := range row {
 			if number > max_value {
